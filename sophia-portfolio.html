@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sophia Hameed — Studio Art</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F7F4EF;
+      --charcoal: #2C2B28;
+      --charcoal-soft: #4A4844;
+      --rose: #C4846A;
+      --rose-light: #E8C4B4;
+      --rose-faint: #F5EAE4;
+      --divider: #DDD8D0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 4rem;
+      background: rgba(247, 244, 239, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--charcoal-soft);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--rose); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 10rem 4rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-text {
+      position: absolute;
+      top: 50%;
+      right: -2rem;
+      transform: translateY(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(8rem, 18vw, 18rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--rose-faint);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1.4rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 8vw, 7.5rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.6rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.4s;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    .hero-tagline {
+      font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+      color: var(--charcoal-soft);
+      max-width: 420px;
+      line-height: 1.75;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.6s;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.8s;
+    }
+
+    .btn-primary {
+      background: var(--charcoal);
+      color: var(--cream);
+      padding: 0.85rem 2.2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--charcoal);
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .btn-primary:hover {
+      background: var(--rose);
+      border-color: var(--rose);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--charcoal);
+      padding: 0.85rem 2.2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--charcoal);
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
+    }
+
+    .btn-outline:hover {
+      background: var(--rose-faint);
+      border-color: var(--rose);
+      color: var(--rose);
+    }
+
+    /* SECTIONS SHARED */
+    section {
+      padding: 6rem 4rem;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 3rem;
+      max-width: 600px;
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--rose);
+      margin-bottom: 2.5rem;
+    }
+
+    /* INTRODUCTION */
+    #introduction {
+      background: var(--cream);
+      border-top: 1px solid var(--divider);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 6rem;
+      align-items: start;
+      max-width: 1100px;
+    }
+
+    .intro-left .section-title {
+      margin-bottom: 1rem;
+    }
+
+    .intro-left .section-title em {
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    .intro-body {
+      color: var(--charcoal-soft);
+      font-size: 1rem;
+      line-height: 1.9;
+    }
+
+    .intro-body p + p {
+      margin-top: 1.4rem;
+    }
+
+    .intro-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2.4rem;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--divider);
+      color: var(--charcoal-soft);
+    }
+
+    /* ARTWORK GALLERY */
+    #artwork {
+      background: #F2EDE7;
+      border-top: 1px solid var(--divider);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 0;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .gallery-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .gallery-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--divider);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #DDD8D0 0%, #C8C0B4 100%);
+    }
+
+    .gallery-placeholder .art-symbol {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-style: italic;
+      color: rgba(44,43,40,0.15);
+      position: relative;
+      z-index: 1;
+    }
+
+    .gallery-caption {
+      padding: 1rem 0 0.4rem;
+      background: transparent;
+    }
+
+    .gallery-caption .art-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--charcoal);
+    }
+
+    .gallery-caption .art-medium {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--charcoal-soft);
+      margin-top: 0.2rem;
+    }
+
+    .gallery-item:hover .gallery-placeholder::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(196, 132, 106, 0.12);
+      transition: all 0.3s ease;
+    }
+
+    /* MARKETING */
+    #marketing {
+      background: var(--cream);
+      border-top: 1px solid var(--divider);
+    }
+
+    .marketing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .marketing-item {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .marketing-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .marketing-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--rose-faint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--rose-light);
+    }
+
+    .marketing-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #F5EAE4 0%, #E8C4B4 100%);
+    }
+
+    .marketing-placeholder .mkt-symbol {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-style: italic;
+      color: rgba(196,132,106,0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    .marketing-caption {
+      padding: 1rem 0 0.2rem;
+    }
+
+    .marketing-caption .mkt-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--charcoal);
+    }
+
+    .marketing-caption .mkt-type {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-top: 0.2rem;
+    }
+
+    /* CONTACT STRIP */
+    #contact {
+      background: var(--charcoal);
+      color: var(--cream);
+      padding: 5rem 4rem;
+      border-top: none;
+      text-align: center;
+    }
+
+    #contact .section-label {
+      color: var(--rose-light);
+    }
+
+    #contact .section-title {
+      color: var(--cream);
+      margin: 0 auto 2rem;
+      max-width: 500px;
+    }
+
+    #contact p {
+      color: rgba(247,244,239,0.6);
+      margin-bottom: 2.5rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-email {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--rose-light);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(232,196,180,0.4);
+      padding-bottom: 0.2rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .contact-email:hover {
+      color: #fff;
+      border-color: #fff;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--charcoal);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 1.6rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: rgba(247,244,239,0.35);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { gap: 1.4rem; }
+      section { padding: 4rem 2rem; }
+      #hero { padding: 8rem 2rem 4rem; }
+      .intro-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .marketing-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.6rem; text-align: center; }
+    }
+
+    @media (max-width: 560px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .hero-bg-text { display: none; }
+      .nav-links { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">Sophia Hameed</a>
+    <ul class="nav-links">
+      <li><a href="#introduction">About</a></li>
+      <li><a href="#artwork">Artwork</a></li>
+      <li><a href="#marketing">Marketing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-text" aria-hidden="true">Art</div>
+    <p class="hero-eyebrow">Studio Art Portfolio</p>
+    <h1 class="hero-name">Sophia<br><em>Hameed</em></h1>
+    <p class="hero-tagline">Making work that lingers — in pigment, in print, in the space between what is seen and what is felt.</p>
+    <div class="hero-buttons">
+      <a href="#artwork" class="btn-primary">View Artwork</a>
+      <a href="#marketing" class="btn-outline">Marketing Work</a>
+    </div>
+  </section>
+
+  <!-- INTRODUCTION -->
+  <section id="introduction">
+    <div class="intro-grid">
+      <div class="intro-left">
+        <p class="section-label">About</p>
+        <h2 class="section-title">Making things<br>by <em>hand & eye</em></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="intro-right">
+        <div class="intro-body">
+          <p>I'm Sophia — a studio art major with a deep investment in the material world. My practice lives at the intersection of observation and instinct: I spend a long time looking before I begin, and even longer looking once I have.</p>
+          <p>My fine art work is rooted in traditional media — charcoal, oil, printmaking — though I'm drawn to the tension between control and accident. I'm interested in what a surface remembers: the pressure of a hand, a layer that was scraped back, a decision left visible.</p>
+          <p>Alongside my studio practice, I work on visual communication and marketing design — bringing the same careful attention to composition and intention that I bring to my fine art, just in service of ideas that need to reach people.</p>
+          <p>Based in the studio and always open to conversation about commissions, collaborations, and creative work of all kinds.</p>
+        </div>
+        <div class="intro-tags">
+          <span class="tag">Oil Painting</span>
+          <span class="tag">Charcoal</span>
+          <span class="tag">Printmaking</span>
+          <span class="tag">Sculpture</span>
+          <span class="tag">Poster Design</span>
+          <span class="tag">Visual Identity</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTWORK GALLERY -->
+  <section id="artwork">
+    <p class="section-label">Selected Works</p>
+    <h2 class="section-title">Studio Art</h2>
+    <div class="divider"></div>
+    <div class="gallery-grid">
+
+      <div class="gallery-item">
+        <div class="gallery-placeholder"><span class="art-symbol">I</span></div>
+        <div class="gallery-caption">
+          <p class="art-title">Still Life with Draped Cloth</p>
+          <p class="art-medium">Oil on canvas · 24 × 30 in</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="gallery-placeholder"><span class="art-symbol">II</span></div>
+        <div class="gallery-caption">
+          <p class="art-title">Figure Study No. 4</p>
+          <p class="art-medium">Charcoal on paper · 18 × 24 in</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="gallery-placeholder"><span class="art-symbol">III</span></div>
+        <div class="gallery-caption">
+          <p class="art-title">Erosion</p>
+          <p class="art-medium">Intaglio print · edition of 10</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="gallery-placeholder"><span class="art-symbol">IV</span></div>
+        <div class="gallery-caption">
+          <p class="art-title">Untitled (Interior)</p>
+          <p class="art-medium">Oil on linen · 20 × 28 in</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="gallery-placeholder"><span class="art-symbol">V</span></div>
+        <div class="gallery-caption">
+          <p class="art-title">Portrait of S.</p>
+          <p class="art-medium">Charcoal and chalk on paper · 16 × 20 in</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="gallery-placeholder"><span class="art-symbol">VI</span></div>
+        <div class="gallery-caption">
+          <p class="art-title">Weight</p>
+          <p class="art-medium">Cast plaster · 8 × 6 × 4 in</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MARKETING -->
+  <section id="marketing">
+    <p class="section-label">Design & Commissions</p>
+    <h2 class="section-title">Marketing &<br>Promotional Work</h2>
+    <div class="divider"></div>
+    <div class="marketing-grid">
+
+      <div class="marketing-item">
+        <div class="marketing-placeholder"><span class="mkt-symbol">I</span></div>
+        <div class="marketing-caption">
+          <p class="mkt-title">Spring Exhibition Poster</p>
+          <p class="mkt-type">Event Poster · Print</p>
+        </div>
+      </div>
+
+      <div class="marketing-item">
+        <div class="marketing-placeholder"><span class="mkt-symbol">II</span></div>
+        <div class="marketing-caption">
+          <p class="mkt-title">Bloom Studio — Brand Identity</p>
+          <p class="mkt-type">Visual Identity · Logo</p>
+        </div>
+      </div>
+
+      <div class="marketing-item">
+        <div class="marketing-placeholder"><span class="mkt-symbol">III</span></div>
+        <div class="marketing-caption">
+          <p class="mkt-title">Open Mic Night Campaign</p>
+          <p class="mkt-type">Social & Print Campaign</p>
+        </div>
+      </div>
+
+      <div class="marketing-item">
+        <div class="marketing-placeholder"><span class="mkt-symbol">IV</span></div>
+        <div class="marketing-caption">
+          <p class="mkt-title">Artisan Market Collateral</p>
+          <p class="mkt-type">Flyer · Banner · Digital</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="section-title">Let's make something together</h2>
+    <p>Open to commissions, collaborations, and conversations.</p>
+    <a href="mailto:sophia@example.com" class="contact-email">sophia@example.com</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Sophia Hameed</p>
+    <p>Studio Art Portfolio</p>
+  </footer>
+
+  <script>
+    // Scroll fade-in for gallery items
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, (entry.target.dataset.delay || 0));
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.gallery-item, .marketing-item').forEach((el, i) => {
+      el.dataset.delay = (i % 3) * 120;
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
